@@ -169,7 +169,7 @@
 
             <div class="message_box">
                 <div class="succes_message">
-                    <span style="color: darkgreen;"><i class="bi bi-check-circle-fill"></i></span> Vous avez été déconnecté avec succès !
+                    <span style="color: darkgreen;"><i class="bi bi-check-circle-fill"></i></span> Déconnecté avec succès !
                 </div>
             </div>
 
