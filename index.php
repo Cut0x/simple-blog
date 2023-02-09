@@ -87,7 +87,10 @@
 
         <?php while($p = $publications -> fetch()) { ?>
             <div class="obj">
-                <p>
+                <p class="author">
+                    <!-- -->
+                </p>
+                <p class="content">
                     <!---->
                 </p>
             </div>
