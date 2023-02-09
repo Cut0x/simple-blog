@@ -41,7 +41,7 @@
         <a href="./" class="actif">Accueil</a>
 
         <?php if (isset($_SESSION['user_login'])) { ?>
-        <a href="./user/?id=">Profil</a>
+        <a href="./user/?id=<?= $_SESSION['user_login']; ?>">Profil</a>
         <?php } else { ?>
         <a href="./auth/?page=login">Connexion</a>
         <?php }; ?>

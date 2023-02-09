@@ -10,37 +10,39 @@
             header('location: ../');
         };
 
-        $identifiant = strip_tags($_REQUEST["btn_login_identifiant"]);
-        $password = strip_tags($_REQUEST["btn_login_password"]);
-        
-        try {
-            $select_stmt = $db -> prepare("SELECT * FROM tbl_users WHERE identifiant=:uid");
-
-            $select_stmt -> execute(
-                array(
-                    ':uid' => $identifiant,
-                )
-            );
-
-            $row = $select_stmt -> fetch(PDO::FETCH_ASSOC);
+        if (isset($_REQUEST['btn_login'])) {
+            $identifiant = strip_tags($_REQUEST["btn_login_identifiant"]);
+            $password = strip_tags($_REQUEST["btn_login_password"]);
             
-            if ($select_stmt->rowCount() > 0) {
-                if ($identifiant == $row["identifiant"]) {
-                    if (password_verify($password, $row["password"])) {
-                        $_SESSION["user_login"] = $row["user_id"];
-                        
-                        header("location: ../");
+            try {
+                $select_stmt = $db -> prepare("SELECT * FROM tbl_users WHERE identifiant=:uid");
+    
+                $select_stmt -> execute(
+                    array(
+                        ':uid' => $identifiant,
+                    )
+                );
+    
+                $row = $select_stmt -> fetch(PDO::FETCH_ASSOC);
+                
+                if ($select_stmt->rowCount() > 0) {
+                    if ($identifiant == $row["identifiant"]) {
+                        if (password_verify($password, $row["password"])) {
+                            $_SESSION["user_login"] = $row["user_id"];
+                            
+                            header("location: ../");
+                        } else {
+                            $errorMsg[] = "Mauvais mot de passe !";
+                        }
                     } else {
-                        $errorMsg[] = "Mauvais mot de passe !";
+                        $errorMsg[] = "Identifiant introuvable !";
                     }
                 } else {
-                    $errorMsg[] = "Identifiant introuvable !";
+                    $errorMsg[] = "Aucun compte n'existe sous cet identifiant !";
                 }
-            } else {
-                $errorMsg[] = "Aucun compte n'existe sous cet identifiant !";
-            }
-        } catch(PDOException $e) {
-            $e -> getMessage();
+            } catch(PDOException $e) {
+                $e -> getMessage();
+            };
         };
     } else if ($page == "register") {
         if (isset($_SESSION['user_login'])) {

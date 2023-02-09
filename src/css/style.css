@@ -93,6 +93,19 @@ input[type=submit]:hover {
     box-shadow: 5px 5px 5px black;
 }
 
+.button {
+    display: flex;
+    justify-content: center;
+}
+
+.button a {
+    text-decoration: none;
+    padding: 5px;
+    color: white;
+    background-color: #293d3d;
+    border-radius: 20px;
+}
+
 @media screen and (max-width: 450px) {
     .navbar {
         display: grid;
