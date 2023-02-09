@@ -10,7 +10,15 @@ body {
 .warn_message {
     border-radius: 15px;
     width: 500px;
-    background-color: yellow;
+    background-color: #c3c318;
+    padding: 15px;
+}
+
+.succes_message {
+    border-radius: 15px;
+    width: 500px;
+    background-color: lightgreen;
+    color: black;
     padding: 15px;
 }
 
@@ -112,5 +120,20 @@ input[type=submit]:hover {
         font-size: 15px;
         border-radius: 20px;
         border: 7px solid #344;
+    }
+
+    .warn_message {
+        border-radius: 15px;
+        width: 300px;
+        background-color: #c3c318;
+        padding: 15px;
+    }
+    
+    .succes_message {
+        border-radius: 15px;
+        width: 300px;
+        background-color: lightgreen;
+        color: black;
+        padding: 15px;
     }
 }

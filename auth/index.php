@@ -20,7 +20,7 @@
             $password = strip_tags($_REQUEST["btn_register_password"]);
             
             try {	
-                $select_stmt = $db -> prepare("SELECT username FROM tbl_users WHERE identifiant=:uid");
+                $select_stmt = $db -> prepare("SELECT identifiant FROM tbl_users WHERE identifiant=:uid");
                 
                 $select_stmt -> execute(
                     array(
@@ -28,10 +28,12 @@
                     )
                 );
 
+                $check = $db -> query('SELECT identifiant FROM tbl_users WHERE identifiant="'.$identifiant.'"');
+
                 $row = $select_stmt -> fetch(PDO::FETCH_ASSOC);
                     
                 try {
-                    if (!isset($errorMsg)) {
+                    if ($check -> rowCount() !== 1) {
                         $new_password = password_hash($password, PASSWORD_DEFAULT);
                         
                         $insert_stmt = $db -> prepare("INSERT INTO tbl_users (username, identifiant, password) VALUES (:uname,:uid,:upassword)");				
@@ -44,6 +46,8 @@
                             ))) {
                             header('location: ./?page=login&result=succes');
                         };
+                    } else {
+                        $errorMsg[] = "Identifiant déjà utilisé !";
                     };
                 } catch(PDOException $e) {
                     $errorMsg[] = "Identifiant déjà utilisé !";
@@ -94,6 +98,18 @@
             <h1>
                 Formulaire de connexion
             </h1>
+
+            <?php if (isset($_GET['result']) && $_GET['result'] == "succes") { ?>
+    	    <div style="margin: 25px;"></div>
+
+            <div class="message_box">
+                <div class="succes_message">
+                    <span style="color: darkgreen;"><i class="bi bi-check-circle-fill"></i></span> Compte enregistré avec succès !
+                </div>
+            </div>
+
+    	    <div style="margin: 25px;"></div>
+            <?php }; ?>
 
             <div class="cont">
                 <input type="text" name="btn_login_identifiant" id="login_identifiant" placeholder="Votre identifiant">
