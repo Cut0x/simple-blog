@@ -1,7 +1,7 @@
 <?php
     require_once './data/config.php';
 
-    
+    session_start();
 ?>
 
 <!DOCTYPE html>
@@ -13,8 +13,29 @@
     <title>Discutons !</title>
 
     <link rel="stylesheet" href="./src/css/style.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 </head>
 <body>
-    
+    <!-- SEE HOME AND LOG IN MENU -->
+    <div class="navbar">
+        <div class="object_nav">
+            <a href="">Accueil</a>
+        </div>
+        <div class="object_nav">
+            <a href="" class="login">Connexion</a>
+        </div>
+    </div>
+
+    <!-- CHECK AND MESSAGE FOR USER LOGIN -->
+    <?php if (!isset($_SESSION['user_login'])) { ?>
+    <div class="message_box">
+        <div class="warn_message">
+            <h1>
+                <span style="color: red;"><i class="bi bi-exclamation-circle-fill"></i></span> Pour réagir aux publications, vous devez vous <a href="./auth/?page=login">connecter</a> !
+            </h1>
+        </div>
+    </div>
+    <?php }; ?>
 </body>
 </html>

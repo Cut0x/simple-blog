@@ -1,3 +1,24 @@
 body {
     background-color: #333;
 }
+
+.message_box {
+    display: flex;
+    justify-content: center;
+}
+
+.warn_message {
+    border-radius: 15px;
+    width: 500px;
+    background-color: yellow;
+    padding: 15px;
+}
+
+header {
+    text-align: center;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+}
