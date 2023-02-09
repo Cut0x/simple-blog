@@ -37,7 +37,52 @@ header {
 }
 
 .navbar a:hover {
-    background-color: #345
+    background-color: #345;
+}
+
+.navbar .actif {
+    background-color: #345;
+}
+
+.page {
+    display: flex;
+    justify-content: center;
+}
+
+form {
+    background-color: #345;
+    padding: 20px;
+    font-size: 30px;
+    width: 650px;
+    border-radius: 60px;
+    text-align: center;
+    color: white;
+}
+
+input[type=text] {
+    font-size: 25px;
+    border-radius: 20px;
+    border: 7px solid #344;
+}
+
+input[type=password] {
+    font-size: 25px;
+    border-radius: 20px;
+    border: 7px solid #344;
+}
+
+input[type=submit] {
+    color: white;
+    font-size: 25px;
+    border-radius: 20px;
+    border: 7px solid #344;
+    background-color: #344;
+}
+
+input[type=submit]:hover {
+    border: 7px solid #293d3d;
+    background-color: #293d3d;
+    box-shadow: 5px 5px 5px black;
 }
 
 @media screen and (max-width: 450px) {
@@ -45,5 +90,27 @@ header {
         display: grid;
         justify-content: center;
         padding: 20px;
+    }
+
+    form h1 {
+        font-size: 35px;
+    }
+
+    input[type=text] {
+        font-size: 15px;
+        border-radius: 20px;
+        border: 7px solid #344;
+    }
+    
+    input[type=password] {
+        font-size: 15px;
+        border-radius: 20px;
+        border: 7px solid #344;
+    }
+
+    input[type=submit] {
+        font-size: 15px;
+        border-radius: 20px;
+        border: 7px solid #344;
     }
 }

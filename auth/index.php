@@ -3,18 +3,24 @@
 
     session_start();
 
-    if (isset($_SESSION['user_login'])) {
-        header('location: ../');
-    };
-
     $page = $_GET['page'];
 
     if ($page == "login") {
-        //
+        if (isset($_SESSION['user_login'])) {
+            header('location: ../');
+        };
     } else if ($page == "register") {
-        //
+        if (isset($_SESSION['user_login'])) {
+            header('location: ../');
+        };
+
+        if (isset($_REQUEST['btn_register'])) {
+            //
+        };
     } else if ($page == "logout") {
-        //
+        if (!isset($_SESSION['user_login'])) {
+            header('location: ./?page=login');
+        };
     } else {
         header('location: ../');
     };
@@ -26,7 +32,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discutons !</title>
+    <title>Authentification !</title>
 
     <link rel="stylesheet" href="../src/css/style.css">
 
@@ -38,10 +44,69 @@
         <a href="./">Accueil</a>
 
         <?php if (isset($_SESSION['user_login'])) { ?>
-        <a href="./user/?id=" class="login">Profil</a>
+        <a href="./user/?id=">Profil</a>
         <?php } else { ?>
-        <a href="./auth/?page=login" class="login">Connexion</a>
+        <a href="./auth/?page=login" class="actif">Connexion</a>
         <?php }; ?>
     </div>
+
+    <div style="margin: 150px;"></div>
+
+    <!-- FORMULAIRES -->
+    <?php if ($page == "login") { ?>
+    <div class="page">
+        <form method="post">
+            <h1>
+                Formulaire de connexion
+            </h1>
+
+            <div class="cont">
+                <input type="text" name="btn_login_identifiant" id="login_identifiant" placeholder="Votre identifiant">
+            </div>
+
+            <div style="margin: 30px;"></div>
+
+            <div class="cont">
+                <input type="password" name="btn_login_password" id="login_password" placeholder="Votre mot de passe">
+            </div>
+
+            <div style="margin: 30px;"></div>
+
+            <input type="submit" name="btn_login" value="Connexion">
+
+            <p>Pas de compte ? <a href="./?page=register">Enregistre toi !</a></p>
+        </form>
+    </div>
+    <?php } else if ($page == "register") { ?>
+    <div class="page">
+        <form method="post">
+            <h1>
+                Formulaire d'inscription
+            </h1>
+
+            <div class="cont">
+                <input type="text" name="btn_register_username" id="register_username" placeholder="Votre pseudo">
+            </div>
+
+            <div style="margin: 30px;"></div>
+
+            <div class="cont">
+                <input type="text" name="btn_register_identifiant" id="register_identifiant" placeholder="Votre identifiant">
+            </div>
+
+            <div style="margin: 30px;"></div>
+
+            <div class="cont">
+                <input type="password" name="btn_register_password" id="register_password" placeholder="Votre mot de passe">
+            </div>
+
+            <div style="margin: 30px;"></div>
+
+            <input type="submit" name="btn_register" value="Enregistrer">
+
+            <p>Déjà un compte ? <a href="./?page=login">Connecte toi !</a></p>
+        </form>
+    </div>
+    <?php }; ?>
 </body>
 </html>
