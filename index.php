@@ -2,6 +2,25 @@
     require_once './data/config.php';
 
     session_start();
+
+    if (isset($_SESSION['user_login'])) {
+        $id = $_SESSION['user_login'];
+    
+        $select_stmt = $db->prepare("SELECT * FROM tbl_users WHERE user_id=:uid");
+        $select_stmt->execute(
+            array(
+                ":uid" => $id
+            )
+        );
+        
+        $row = $select_stmt -> fetch(
+            PDO::FETCH_ASSOC
+        );
+    };
+
+    $publications = $db -> query('SELECT * FROM tbl_publications ORDER BY date_publication DESC');
+
+    $publications_count = $publications -> rowCount();
 ?>
 
 <!DOCTYPE html>
@@ -38,5 +57,41 @@
         </div>
     </div>
     <?php }; ?>
+
+    <div style="margin: 25px;"></div>
+
+    <!-- CERTIFICATION REQUEST -->
+    <div class="button">
+        <?php if (isset($_SESSION['user_login']) && $row['certified'] == 0) { ?>
+        <a href="#">Demander la certification !</a>
+        <?php } else if (isset($_SESSION['user_login']) && $row['certified'] == 1) { ?>
+        <p>
+            Vous êtes certifié !
+        </p>
+        <?php }; ?>
+    </div>
+
+    <div style="margin: 25px;"></div>
+
+    <!-- SEE PUBLICATION -->
+    <div class="container">
+        <?php if ($publications_count == 0) { ?>
+        <div class="message_box">
+            <div class="warn_message">
+                <h1>
+                    <span style="color: red;"><i class="bi bi-exclamation-circle-fill"></i></span> Il n'y a actuellement aucune publication ! <?php if (isset($_SESSION['user_login'])) { echo "Sois le premier à en faire une !"; }; ?>
+                </h1>
+            </div>
+        </div>
+        <?php }; ?>
+
+        <?php while($p = $publications -> fetch()) { ?>
+            <div class="obj">
+                <p>
+                    <!---->
+                </p>
+            </div>
+        <?php }; ?>
+    </div>
 </body>
 </html>
