@@ -41,9 +41,9 @@
         <a href="./">Accueil</a>
 
         <?php if (isset($_SESSION['user_login'])) { ?>
-        <a href="./user/?id=" class="login">Profil</a>
+        <a href="./user/?id=" class="actif">Profil</a>
         <?php } else { ?>
-        <a href="./auth/?page=login" class="login">Connexion</a>
+        <a href="./auth/?page=login">Connexion</a>
         <?php }; ?>
     </div>
 
@@ -88,10 +88,10 @@
         <?php while($p = $publications -> fetch()) { ?>
             <div class="obj">
                 <p class="author">
-                    <!-- -->
+                    <a href="./user/?id=<?= $p['author_id']; ?>">User</a> <?php if ($p_author['certified'] == 1) { echo '<a href="#" class="certif"><i class="bi bi-patch-check-fill"></i></a>'; }; ?>
                 </p>
                 <p class="content">
-                    <!---->
+                    <?= nl2br($p['content']); ?>
                 </p>
             </div>
         <?php }; ?>
