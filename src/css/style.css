@@ -21,4 +21,21 @@ header {
 .navbar {
     display: flex;
     justify-content: center;
+    padding: 20px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: white;
+    padding: 20px;
+    font-size: 45px;
+    background-color: #344;
+    border-radius: 5px;
+    margin: 10px;
+    width: 200px;
+    text-align: center;
+}
+
+.navbar a:hover {
+    background-color: #345
 }

@@ -19,12 +19,13 @@
 <body>
     <!-- SEE HOME AND LOG IN MENU -->
     <div class="navbar">
-        <div class="object_nav">
-            <a href="">Accueil</a>
-        </div>
-        <div class="object_nav">
-            <a href="" class="login">Connexion</a>
-        </div>
+        <a href="./">Accueil</a>
+
+        <?php if (isset($_SESSION['user_login'])) { ?>
+        <a href="./user/?id=" class="login">Profil</a>
+        <?php } else { ?>
+        <a href="./auth/?page=login" class="login">Connexion</a>
+        <?php }; ?>
     </div>
 
     <!-- CHECK AND MESSAGE FOR USER LOGIN -->
