@@ -9,6 +9,39 @@
         if (isset($_SESSION['user_login'])) {
             header('location: ../');
         };
+
+        $identifiant = strip_tags($_REQUEST["btn_login_identifiant"]);
+        $password = strip_tags($_REQUEST["btn_login_password"]);
+        
+        try {
+            $select_stmt = $db -> prepare("SELECT * FROM tbl_users WHERE identifiant=:uid");
+
+            $select_stmt -> execute(
+                array(
+                    ':uid' => $identifiant,
+                )
+            );
+
+            $row = $select_stmt -> fetch(PDO::FETCH_ASSOC);
+            
+            if ($select_stmt->rowCount() > 0) {
+                if ($identifiant == $row["identifiant"]) {
+                    if (password_verify($password, $row["password"])) {
+                        $_SESSION["user_login"] = $row["user_id"];
+                        
+                        header("location: ../");
+                    } else {
+                        $errorMsg[] = "Mauvais mot de passe !";
+                    }
+                } else {
+                    $errorMsg[] = "Identifiant introuvable !";
+                }
+            } else {
+                $errorMsg[] = "Aucun compte n'existe sous cet identifiant !";
+            }
+        } catch(PDOException $e) {
+            $e -> getMessage();
+        };
     } else if ($page == "register") {
         if (isset($_SESSION['user_login'])) {
             header('location: ../');
@@ -53,13 +86,17 @@
                     $errorMsg[] = "Identifiant déjà utilisé !";
                 }
             } catch(PDOException $e) {
-                echo $e;
+                $e -> getMessage();
             };
         };
     } else if ($page == "logout") {
         if (!isset($_SESSION['user_login'])) {
             header('location: ./?page=login');
         };
+        
+        header("location: ./?page=login&result=disconnected");
+        
+        session_destroy();
     } else {
         header('location: ../');
     };
@@ -98,6 +135,20 @@
             <h1>
                 Formulaire de connexion
             </h1>
+
+            <?php if(isset($errorMsg)) { ?>
+		    <?php foreach($errorMsg as $error) { ?>
+    	    <div style="margin: 25px;"></div>
+
+            <div class="message_box">
+                <div class="warn_message">
+                    <span style="color: red;"><i class="bi bi-exclamation-circle-fill"></i></span> <?= $error; ?>
+                </div>
+            </div>
+
+    	    <div style="margin: 25px;"></div>
+            <?php }; ?>
+		    <?php }; ?>
 
             <?php if (isset($_GET['result']) && $_GET['result'] == "succes") { ?>
     	    <div style="margin: 25px;"></div>
