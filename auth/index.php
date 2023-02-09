@@ -15,7 +15,42 @@
         };
 
         if (isset($_REQUEST['btn_register'])) {
-            //
+            $username = strip_tags($_REQUEST["btn_register_username"]);
+            $identifiant = strip_tags($_REQUEST["btn_register_identifiant"]);
+            $password = strip_tags($_REQUEST["btn_register_password"]);
+            
+            try {	
+                $select_stmt = $db -> prepare("SELECT username FROM tbl_users WHERE identifiant=:uid");
+                
+                $select_stmt -> execute(
+                    array(
+                        ':uid' => $identifiant
+                    )
+                );
+
+                $row = $select_stmt -> fetch(PDO::FETCH_ASSOC);
+                    
+                try {
+                    if (!isset($errorMsg)) {
+                        $new_password = password_hash($password, PASSWORD_DEFAULT);
+                        
+                        $insert_stmt = $db -> prepare("INSERT INTO tbl_users (username, identifiant, password) VALUES (:uname,:uid,:upassword)");				
+                        
+                        if ($insert_stmt -> execute(
+                            array(
+                                ':uname' => $username,
+                                ':uid' => $identifiant,
+                                ':upassword' => $new_password
+                            ))) {
+                            header('location: ./?page=login&result=succes');
+                        };
+                    };
+                } catch(PDOException $e) {
+                    $errorMsg[] = "Identifiant déjà utilisé !";
+                }
+            } catch(PDOException $e) {
+                echo $e;
+            };
         };
     } else if ($page == "logout") {
         if (!isset($_SESSION['user_login'])) {
@@ -83,6 +118,20 @@
             <h1>
                 Formulaire d'inscription
             </h1>
+
+            <?php if(isset($errorMsg)) { ?>
+		    <?php foreach($errorMsg as $error) { ?>
+    	    <div style="margin: 25px;"></div>
+
+            <div class="message_box">
+                <div class="warn_message">
+                    <span style="color: red;"><i class="bi bi-exclamation-circle-fill"></i></span> <?= $error; ?>
+                </div>
+            </div>
+
+    	    <div style="margin: 25px;"></div>
+            <?php }; ?>
+		    <?php }; ?>
 
             <div class="cont">
                 <input type="text" name="btn_register_username" id="register_username" placeholder="Votre pseudo">
