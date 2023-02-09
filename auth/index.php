@@ -111,6 +111,18 @@
     	    <div style="margin: 25px;"></div>
             <?php }; ?>
 
+            <?php if (isset($_GET['result']) && $_GET['result'] == "disconnected") { ?>
+    	    <div style="margin: 25px;"></div>
+
+            <div class="message_box">
+                <div class="succes_message">
+                    <span style="color: darkgreen;"><i class="bi bi-check-circle-fill"></i></span> Vous avez été déconnecté avec succès !
+                </div>
+            </div>
+
+    	    <div style="margin: 25px;"></div>
+            <?php }; ?>
+
             <div class="cont">
                 <input type="text" name="btn_login_identifiant" id="login_identifiant" placeholder="Votre identifiant">
             </div>
