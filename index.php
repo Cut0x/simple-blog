@@ -88,7 +88,7 @@
         <?php while($p = $publications -> fetch()) { ?>
             <div class="obj">
                 <p class="author">
-                    <a href="./user/?id=<?= $p['author_id']; ?>">User</a> <?php if ($p_author['certified'] == 1) { echo '<a href="#" class="certif"><i class="bi bi-patch-check-fill"></i></a>'; }; ?>
+                    <a href="./user/?id=<?= $p['author_id']; ?>">User</a> <?php if ($p_author['certified'] == 1) { echo '<a href="./devenir-certifie/" class="certif"><i class="bi bi-patch-check-fill"></i></a>'; }; ?>
                 </p>
                 <p class="content">
                     <?= nl2br($p['content']); ?>
