@@ -30,6 +30,14 @@
 
     <div style="margin: 150px;"></div>
 
-    <!-- FORMULAIRES -->
+    <!-- EXPLICATION -->
+    <div class="content">
+        <h1>
+            Comment devenir certifié ?
+        </h1>
+        <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis officiis deleniti repudiandae exercitationem aspernatur voluptatum. Quis cupiditate tenetur distinctio odit eum vero, laboriosam eligendi error sint optio? Modi, magni qui.
+        </p>
+    </div>
 </body>
 </html>
