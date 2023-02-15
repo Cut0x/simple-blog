@@ -63,7 +63,7 @@
     <!-- CERTIFICATION REQUEST -->
     <div class="button">
         <?php if (isset($_SESSION['user_login']) && $row['certified'] == 0) { ?>
-        <a href="#">Demander la certification !</a>
+        <a href="./devenir-certifie">Demander la certification !</a>
         <?php } else if (isset($_SESSION['user_login']) && $row['certified'] == 1) { ?>
         <p>
             Vous êtes certifié ! <span style="color: lightblue;"><i class="bi bi-patch-check-fill"></i></span>
