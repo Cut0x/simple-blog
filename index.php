@@ -96,5 +96,14 @@
             </div>
         <?php }; ?>
     </div>
+
+    <!-- BUTTON FOR PUBLICATION -->
+    <div>
+        <?php if (isset($_SESSION['user_login'])) { ?>
+        <div></div>
+        <?php }; ?>
+    </div>
+
+    <script src="./src/js/script.js"></script>
 </body>
 </html>
