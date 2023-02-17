@@ -102,7 +102,7 @@
         <button type="button" onclick="toggle_text();" style=""><i class="bi bi-pencil-fill"></i></button>
         <form id="span_txt" style="display: none;">
             <textarea name="" id="" cols="30" rows="10"></textarea>
-            <input type="submit" value='✉️'>
+            <input type="submit" name="btn_post_article" value='✉️'>
         </form>
     </div>
 
