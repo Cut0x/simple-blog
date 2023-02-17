@@ -21,6 +21,10 @@
     $publications = $db -> query('SELECT * FROM tbl_publications ORDER BY date_publication DESC');
 
     $publications_count = $publications -> rowCount();
+
+    if (isset($_REQUEST['btn_post_article'])) {
+        //
+    };
 ?>
 
 <!DOCTYPE html>
@@ -99,11 +103,13 @@
 
     <!-- BUTTON FOR PUBLICATION -->
     <div class="pub">
+        <?php if (isset($_SESSION['user_login'])) { ?>
         <button type="button" onclick="toggle_text();" style=""><i class="bi bi-pencil-fill"></i></button>
         <form id="span_txt" style="display: none;">
-            <textarea name="btn_content_article" id="content_article" cols="20" rows="10"></textarea>
+            <textarea name="btn_content_article" id="content_article" cols="30" rows="5"></textarea>
             <input type="submit" name="btn_post_article" value='✉️'>
         </form>
+        <?php }; ?>
     </div>
 
     <script src="./src/js/script.js"></script>

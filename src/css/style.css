@@ -132,11 +132,19 @@ input[type=submit]:hover {
     border-radius: 60px
 }
 
+.pub button:hover {
+    width: 100px;
+    height: 100px;
+    font-size: 60px;
+    color: white;
+    background: #3e49c4;
+    border: 0px solid #3e49c4;
+    border-radius: 60px
+}
+
 .pub form {
     background: transparent;
 }
-
-
 
 .pub input[type=submit] {
     color: white;
@@ -156,6 +164,8 @@ input[type=submit]:hover {
 textarea {
     background: transparent;
     color: white;
+    padding: 5px;
+    border-radius: 10px;
 }
 
 @media screen and (max-width: 450px) {
