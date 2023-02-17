@@ -114,8 +114,47 @@ input[type=submit]:hover {
     border-radius: 20px;
 }
 
-.form_post {
-    text-align: center;
+.pub {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+}
+
+.pub button {
+    width: 100px;
+    height: 100px;
+    font-size: 60px;
+    color: white;
+    background: #5865F2;
+    border: 0px solid #5865F2;
+    border-radius: 60px
+}
+
+.pub form {
+    background: transparent;
+}
+
+
+
+.pub input[type=submit] {
+    color: white;
+    font-size: 25px;
+    border-radius: 0px;
+    border: 0px;
+    background-color: transparent;
+}
+
+.pub input[type=submit]:hover {
+    border: 0px;
+    background-color: transparent;
+    border-radius: 8px;
+    box-shadow: 5px 5px 5px black;
+}
+
+textarea {
+    background: transparent;
     color: white;
 }
 

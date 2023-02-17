@@ -98,10 +98,11 @@
     </div>
 
     <!-- BUTTON FOR PUBLICATION -->
-    <div>
-        <button type="button" onclick="toggle_text();"><i class="bi bi-pencil-fill"></i></button>
-        <form id="span_txt" class="form_post" method="post">
+    <div class="pub">
+        <button type="button" onclick="toggle_text();" style=""><i class="bi bi-pencil-fill"></i></button>
+        <form id="span_txt" style="display: none;">
             <textarea name="" id="" cols="30" rows="10"></textarea>
+            <input type="submit" value='✉️'>
         </form>
     </div>
 
