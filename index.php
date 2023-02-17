@@ -99,9 +99,10 @@
 
     <!-- BUTTON FOR PUBLICATION -->
     <div>
-        <?php if (isset($_SESSION['user_login'])) { ?>
-        <div></div>
-        <?php }; ?>
+        <button type="button" onclick="toggle_text();"><i class="bi bi-pencil-fill"></i></button>
+        <form id="span_txt" class="form_post" method="post">
+            <textarea name="" id="" cols="30" rows="10"></textarea>
+        </form>
     </div>
 
     <script src="./src/js/script.js"></script>

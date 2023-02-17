@@ -114,6 +114,11 @@ input[type=submit]:hover {
     border-radius: 20px;
 }
 
+.form_post {
+    text-align: center;
+    color: white;
+}
+
 @media screen and (max-width: 450px) {
     .navbar {
         display: grid;
